@@ -3,6 +3,9 @@ plugins {
     `maven-publish`
 }
 
+group = project.property("GROUP_JITPACK") as String
+version = project.property("VERSION") as String
+
 kotlin {
     jvmToolchain(23)
 }
@@ -17,7 +20,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             groupId = project.property("GROUP") as String
             artifactId = "ktor-apigateway-aws"
-            version = project.property("VERSION_NAME") as String
+            version = project.property("VERSION") as String
 
             from(components["java"])
         }
