@@ -1,10 +1,10 @@
 package jp.lax256.apigateway.core.util
 
-import jp.lax256.apigateway.core.contract.dto.Firebase
-import jp.lax256.apigateway.core.contract.dto.FirebaseAppleAuth
-import jp.lax256.apigateway.core.contract.dto.FirebaseFacebookAuth
-import jp.lax256.apigateway.core.contract.dto.FirebaseGoogleAuth
-import jp.lax256.apigateway.core.contract.dto.FirebasePasswordAuth
+import jp.lax256.apigateway.core.dto.Firebase
+import jp.lax256.apigateway.core.dto.FirebaseAppleAuth
+import jp.lax256.apigateway.core.dto.FirebaseFacebookAuth
+import jp.lax256.apigateway.core.dto.FirebaseGoogleAuth
+import jp.lax256.apigateway.core.dto.FirebasePasswordAuth
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic

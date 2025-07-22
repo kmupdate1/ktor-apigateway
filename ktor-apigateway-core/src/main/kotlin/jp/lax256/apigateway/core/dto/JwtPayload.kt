@@ -1,4 +1,4 @@
-package jp.lax256.apigateway.core.contract.dto
+package jp.lax256.apigateway.core.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

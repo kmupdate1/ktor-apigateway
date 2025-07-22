@@ -1,7 +1,7 @@
 package jp.lax256.apigateway.gcp.issuer
 
 import io.ktor.server.application.*
-import jp.lax256.apigateway.core.contract.dto.JwtPayload
+import jp.lax256.apigateway.core.dto.JwtPayload
 import jp.lax256.apigateway.core.contract.operation.PayloadIssuer
 import jp.lax256.apigateway.core.util.ApiGatewayPayloadJson
 import jp.lax256.apigateway.gcp.http.GatewayHttpHeaders
