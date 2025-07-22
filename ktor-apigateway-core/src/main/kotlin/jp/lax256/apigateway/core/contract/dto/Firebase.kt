@@ -1,9 +1,13 @@
 package jp.lax256.apigateway.core.contract.dto
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonClassDiscriminator
 
 @Serializable
+@OptIn(ExperimentalSerializationApi::class)
+@JsonClassDiscriminator("sign_in_provider")
 sealed interface Firebase {
     val identities: Identities
     val signInProvider: String
