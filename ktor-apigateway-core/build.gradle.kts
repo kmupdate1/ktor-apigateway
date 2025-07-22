@@ -10,7 +10,9 @@ kotlin {
     jvmToolchain(23)
 }
 
-dependencies { implementation(libs.ktor.server.core) }
+dependencies {
+    implementation(libs.ktor.server.core)
+}
 
 publishing {
     publications {
