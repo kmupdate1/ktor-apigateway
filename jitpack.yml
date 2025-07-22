@@ -1,0 +1,4 @@
+jdk:
+  - openjdk21
+install:
+  - ./gradlew clean build \:ktor-apigateway-core:publishToMavenLocal \:ktor-apigateway-gcp:publishToMavenLocal \:ktor-apigateway-aws:publishToMavenLocal \:ktor-apigateway-azure:publishToMavenLocal
