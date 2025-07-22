@@ -5,7 +5,6 @@ import jp.lax256.apigateway.core.contract.dto.JwtPayload
 import jp.lax256.apigateway.core.contract.operation.PayloadIssuer
 import jp.lax256.apigateway.core.util.ApiGatewayPayloadJson
 import jp.lax256.apigateway.gcp.http.GatewayHttpHeaders
-import kotlinx.serialization.json.Json
 import org.slf4j.Logger
 import java.util.*
 
