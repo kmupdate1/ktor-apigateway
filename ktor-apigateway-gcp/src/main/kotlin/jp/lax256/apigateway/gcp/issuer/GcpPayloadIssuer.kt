@@ -5,10 +5,9 @@ import jp.lax256.apigateway.core.contract.dto.JwtPayload
 import jp.lax256.apigateway.core.contract.operation.PayloadIssuer
 import jp.lax256.apigateway.gcp.dto.GcpJwtPayload
 import jp.lax256.apigateway.gcp.http.GatewayHttpHeaders
-import jp.lax256.apigateway.gcp.util.GcpInitializer
 import kotlinx.serialization.json.Json
 import org.slf4j.Logger
-import java.util.Base64
+import java.util.*
 
 class GcpPayloadIssuer: PayloadIssuer {
     override fun issueFromHeader(call: ApplicationCall, logger: Logger): JwtPayload {
