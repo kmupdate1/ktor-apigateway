@@ -1,5 +1,8 @@
 package jp.lax256.apigateway.core.contract.dto
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 interface JwtPayload {
     val issuer: String
     val audience: String
