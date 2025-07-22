@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm")
+    alias { libs.plugins.kotlin.jvm }
     `maven-publish`
 }
 
@@ -7,7 +7,7 @@ group = project.property("GROUP_JITPACK") as String
 version = project.property("VERSION") as String
 
 kotlin {
-    jvmToolchain(23)
+    jvmToolchain(21)
 }
 
 dependencies {
