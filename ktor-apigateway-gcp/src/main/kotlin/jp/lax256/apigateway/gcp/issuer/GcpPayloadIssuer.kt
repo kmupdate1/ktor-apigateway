@@ -3,7 +3,6 @@ package jp.lax256.apigateway.gcp.issuer
 import io.ktor.server.application.*
 import jp.lax256.apigateway.core.contract.dto.JwtPayload
 import jp.lax256.apigateway.core.contract.operation.PayloadIssuer
-import jp.lax256.apigateway.gcp.dto.GcpJwtPayload
 import jp.lax256.apigateway.gcp.http.GatewayHttpHeaders
 import kotlinx.serialization.json.Json
 import org.slf4j.Logger
@@ -21,7 +20,7 @@ class GcpPayloadIssuer: PayloadIssuer {
                 .let { String(it, Charsets.UTF_8) }
                 .run {
                     logger.info("Decoded ${GatewayHttpHeaders.XApigatewayApiUserinfo} Payload: $this")
-                    Json.decodeFromString<GcpJwtPayload>(this)
+                    Json.decodeFromString<JwtPayload>(this)
                 }
         }.fold(
             onSuccess = { jwtPayload ->
