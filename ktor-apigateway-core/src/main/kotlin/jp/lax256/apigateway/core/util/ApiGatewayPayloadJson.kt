@@ -13,7 +13,8 @@ import kotlinx.serialization.modules.subclass
 val ApiGatewayPayloadJson = Json {
     ignoreUnknownKeys = true
     prettyPrint = true
-    // classDiscriminator = "sign_in_provider"
+    isLenient = true
+
     serializersModule = SerializersModule {
         polymorphic(Firebase::class) {
             subclass(FirebasePasswordAuth::class)

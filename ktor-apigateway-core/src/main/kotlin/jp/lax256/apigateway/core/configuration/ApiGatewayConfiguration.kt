@@ -2,6 +2,8 @@ package jp.lax256.apigateway.core.configuration
 
 import io.ktor.server.config.ApplicationConfig
 import jp.lax256.apigateway.core.CloudVendor
+import jp.lax256.apigateway.core.dto.Claims
+import jp.lax256.apigateway.core.dto.JwtPayload
 
 class ApiGatewayConfiguration(config: ApplicationConfig) {
     val issuePrincipal: IssuePrincipalConfiguration = IssuePrincipalConfiguration(config)
@@ -22,7 +24,8 @@ class ApiGatewayConfiguration(config: ApplicationConfig) {
     var vendor: CloudVendor = CloudVendor.Nothing
 
     class IssuePrincipalConfiguration(config: ApplicationConfig) {
-        var issue: Boolean = false
+        var autoIssue: Boolean = false
+        var prepare: ((JwtPayload) -> Claims)? = null
     }
 
     class VerifyGatewayTokenConfiguration(config: ApplicationConfig) {
