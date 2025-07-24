@@ -27,7 +27,7 @@ class GcpApiGateway(config: ApiGatewayConfiguration): ApiGateway {
 
             if (pluginConfig.vendor != CloudVendor.GCP) throw VendorNotMatchedException(
                 "GcpApiGateway plugin requires a ${CloudVendor.GCP.name} vendor configuration. But actual vendor is ${pluginConfig.vendor.name}. Please set `vendor = CloudVendor.GCP` in the install block."
-            ).apply { baseLog.error("${pluginConfig.vendor} not setting.", this) }
+            ).apply { baseLog.error("{} not setting.", pluginConfig.vendor, this) }
 
             GcpInitializer.run {
                 initIssuer(pluginConfig.vendor)

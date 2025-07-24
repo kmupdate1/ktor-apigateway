@@ -18,17 +18,25 @@ class GcpPayloadIssuer: PayloadIssuer {
             Base64.getUrlDecoder().decode(xApigatewayApiUserinfo)
                 .let { String(it, Charsets.UTF_8) }
                 .run {
-                    call.application.log.info("$SUCCESS: Decoded '${GatewayHttpHeaders.XApigatewayApiUserinfo}' header value.")
+                    call.application.log.info(
+                        "$SUCCESS: Decoded '{}' header value.",
+                        GatewayHttpHeaders.XApigatewayApiUserinfo,
+                    )
                     ApiGatewayPayloadJson.decodeFromString<JwtPayload>(this)
                 }
         }.fold(
             onSuccess = { jwtPayload ->
-                call.application.log.info("$SUCCESS: Decoding and parsing '${GatewayHttpHeaders.XApigatewayApiUserinfo}' header value.")
+                call.application.log.info(
+                    "$SUCCESS: Decoding and parsing '{}' header value.",
+                    GatewayHttpHeaders.XApigatewayApiUserinfo,
+                )
                 jwtPayload
             },
             onFailure = { throwable ->
                 call.application.log.error(
-                    "$FAILED: Decoding or parsing '${GatewayHttpHeaders.XApigatewayApiUserinfo}' header value. - ${throwable.message}",
+                    "$FAILED: Decoding or parsing '{}' header value. - {}",
+                    GatewayHttpHeaders.XApigatewayApiUserinfo,
+                    throwable.message,
                     throwable,
                 )
                 throw throwable
