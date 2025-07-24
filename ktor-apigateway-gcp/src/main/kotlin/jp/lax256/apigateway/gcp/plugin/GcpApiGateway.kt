@@ -10,6 +10,7 @@ import jp.lax256.apigateway.core.exception.VendorNotMatchedException
 import jp.lax256.apigateway.core.plugin.ApiGateway
 import jp.lax256.apigateway.core.util.ServiceRegistry
 import jp.lax256.apigateway.gcp.util.GcpInitializer
+import org.slf4j.LoggerFactory
 
 class GcpApiGateway(config: ApiGatewayConfiguration): ApiGateway {
     companion object Plugin : BaseApplicationPlugin<Application, ApiGatewayConfiguration, GcpApiGateway> {
@@ -20,7 +21,7 @@ class GcpApiGateway(config: ApiGatewayConfiguration): ApiGateway {
             configure: ApiGatewayConfiguration.() -> Unit
         ): GcpApiGateway {
             val baseConfig = pipeline.environment.config
-            val baseLog = pipeline.environment.log
+            val baseLog = LoggerFactory.getLogger(GcpApiGateway::class.java)
             val pluginConfig = ApiGatewayConfiguration(baseConfig).apply(configure)
 
             val plugin = GcpApiGateway(pluginConfig)
@@ -38,6 +39,7 @@ class GcpApiGateway(config: ApiGatewayConfiguration): ApiGateway {
             val issuer = ServiceRegistry.payloadIssuer(pluginConfig.vendor)
             val gatewayTokenVerifier = ServiceRegistry.gatewayTokenVerifier(pluginConfig.vendor)
             val clientTokenVerifier = ServiceRegistry.clientTokenVerifier(pluginConfig.vendor)
+
             pipeline.intercept(ApplicationCallPipeline.ApplicationPhase.Plugins) {
                 if (pluginConfig.verifyClientToken.verify)
                     clientTokenVerifier
