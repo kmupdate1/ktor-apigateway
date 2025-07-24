@@ -5,4 +5,7 @@ import jp.lax256.apigateway.core.dto.JwtPayload
 
 interface PayloadIssuer {
     fun issueFromHeader(call: ApplicationCall): JwtPayload
+
+    val SUCCESS: String get() = "SUCCESS"
+    val FAILED: String get() = "FAILED"
 }

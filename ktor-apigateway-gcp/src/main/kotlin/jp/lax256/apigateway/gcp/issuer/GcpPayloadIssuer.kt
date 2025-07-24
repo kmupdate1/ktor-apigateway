@@ -10,7 +10,7 @@ import java.util.*
 class GcpPayloadIssuer: PayloadIssuer {
     override fun issueFromHeader(call: ApplicationCall): JwtPayload {
         val xApigatewayApiUserinfo = call.request.headers[GatewayHttpHeaders.XApigatewayApiUserinfo]
-            ?: throw IllegalStateException("[${GatewayHttpHeaders.XApigatewayApiUserinfo}] header not found.").apply {
+            ?: throw IllegalStateException("No '${GatewayHttpHeaders.XApigatewayApiUserinfo}' header found.").apply {
                 call.application.log.error(this.message, this)
             }
 
@@ -18,17 +18,17 @@ class GcpPayloadIssuer: PayloadIssuer {
             Base64.getUrlDecoder().decode(xApigatewayApiUserinfo)
                 .let { String(it, Charsets.UTF_8) }
                 .run {
-                    call.application.log.info("Decoded [${GatewayHttpHeaders.XApigatewayApiUserinfo}] header.")
+                    call.application.log.info("$SUCCESS: Decoded '${GatewayHttpHeaders.XApigatewayApiUserinfo}' header value.")
                     ApiGatewayPayloadJson.decodeFromString<JwtPayload>(this)
                 }
         }.fold(
             onSuccess = { jwtPayload ->
-                call.application.log.info("SUCCESS decoding and parsing [${GatewayHttpHeaders.XApigatewayApiUserinfo}] header.")
+                call.application.log.info("$SUCCESS: Decoding and parsing '${GatewayHttpHeaders.XApigatewayApiUserinfo}' header value.")
                 jwtPayload
             },
             onFailure = { throwable ->
                 call.application.log.error(
-                    "FAILED to decoding or parsing [${GatewayHttpHeaders.XApigatewayApiUserinfo}] header.: ${throwable.message}",
+                    "$FAILED: Decoding or parsing '${GatewayHttpHeaders.XApigatewayApiUserinfo}' header value. - ${throwable.message}",
                     throwable,
                 )
                 throw throwable
